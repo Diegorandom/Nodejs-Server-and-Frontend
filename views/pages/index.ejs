@@ -33,9 +33,23 @@
         border: none; 
     }
     
+    // Mixin itself
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+// Usage as a mixin
+.element {
+  @include clearfix;
+}
+    
 </style>    
     
-<body style="background-color:#ffcc16;">
+<body style="background-color:#ffcc16; height:100%;">
     
     <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs gif" align="center">
     
@@ -126,13 +140,13 @@
     <% } %>
     
         </div>
-    
-    <br>
+
+    <div class="clearfix"></div>
     
     <!-- Display the countdown timer in an element --> 
     <div class="container" >
         <div class="row">
-            <div class="col-lg-12" align="center"><h2><p id="demo" style="height:100px;"></p></h2></div>
+            <div class="col-lg-12" align="center"><h2><p id="demo" style="height:200px;"></p></h2></div>
         </div>
     </div>
     
