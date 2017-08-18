@@ -32,7 +32,7 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
     
-imagen = 'img/emojimezcal.gif'; 
+imagen = 'img/emoji_veladora.gif'; 
 color = 'none';
     
   response.render('pages/index', {

@@ -6,24 +6,21 @@
 </head>
     
 <style>
-    body{
+    .gif {
         background-image: url('<%=imagen%>');
         background-position: center; 
         background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-color: <%=color%>;
+        background-color: <%=color%>;  
+        background-size: 1200px 764px;    
     }
     
-    .button{
-        
-    }
     
     .button:hover {
          box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     }
     
     .dropdown-menu, .dropdown-toggle, .dropdown{
-        background:transparent;
+        background-color:transparent;
         border: none;  
     }
     
@@ -33,36 +30,34 @@
     }
     
    .dropdown-toggle:active {
-        background-color: none;
+        background-color: black;
         border: none; 
     }
     
 </style>    
     
-<body>
+<body style="background-color:#ffcc16;">
+    <div class="gif">
     
-<div class="dropdown" align="right" style="margin-right:25px; margin-top:25px;">
+<div class="dropdown" align="right" style="margin-right:25px;">
   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="color:none;" align="right">
      <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
   </button>
-  <ul align="right" class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+  <ul align="right" class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1" style="background-color:black; color:white;">
     <li><div style="height:400px; width:350px; margin:20px;">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</div></li>
   </ul>
 </div>
-  
- 
-  <!-- <% include ../partials/nav.ejs %> -->
     
     <% if(color == 'none'){ %>
         <form id="votacion" method="post" action="/votacion" >
         <div class="container">
             <div class="row">
-                    <div class="col-lg-12" align="center" style="margin-top:500px;">
+                    <div class="col-lg-12" align="center" style="margin-top:475px;">
                         <input style="background-color: white; width:300px;" type="email" value="" tabindex="2" placeholder="Correo electrónico" name="email" required>
                     </div>
                     <div class="col-lg-12" align="center" style="margin-top:15px;">
                         <div class="input-wrap">
-                        <button class="button" form="votacion" style="background-color:#3b5998; color:white; font-size:150%; border:none;">VOTA AQUÍ</button>
+                        <button class="button" form="votacion" style="background-color:black; color:white; font-size:150%; border:none;">VOTA AQUÍ</button>
                         </div>
                     </div>
             </div>
@@ -71,8 +66,7 @@
     
         <div class="container">
         <div class="row">
-            <div class="col-lg-12" align="center" style="margin-top:15px;" ><h2>#Emojimezcal</h2></div>
-            <div class="col-lg-12" align="center" style="margin-top:15px;" ><h2>#mezcalizandoalmundo</h2></div>
+            <div class="col-lg-12" align="center" style="margin-top:15px;" ><h2>#emojimezcal #mezcalizandoalmundo</h2></div>
         </div>
         </div>
     
@@ -87,12 +81,9 @@
     
     <% } %>
     
-    <!-- Display the countdown timer in an element -->
+    <!-- Display the countdown timer in an element --> 
+    <div class="col-lg-12" align="center" ><h2><p id="demo"></p></h2></div>
     
-    <div class="col-lg-12" align="center" style="margin-top:15px;" ><h2><p id="demo"></p></h2></div>
-    
-
-
 <script>
 // Set the date we're counting down to
 var countDownDate = new Date("Sep 13, 2017 00:00:00").getTime();
@@ -123,10 +114,10 @@ var x = setInterval(function() {
   }
 }, 1000);
 </script>
-    
-    
-    
+
        <% include ../partials/foot.ejs %>
+        
+        </div>
     
 </body>
    
