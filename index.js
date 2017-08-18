@@ -31,6 +31,10 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
+    
+imagen = 'img/emojimezcal.gif'; 
+color = 'none';
+    
   response.render('pages/index', {
       imagen: imagen,
       color: color
