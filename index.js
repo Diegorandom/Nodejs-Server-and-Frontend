@@ -49,7 +49,7 @@ app.post('/votacion', function(req, res){
     session
         .run('CREATE (n:EmojiVoter {email: {email} }) RETURN n', {email:email})
         .then(function(resultado){
-            imagen = 'img/BarrayMano.png';
+            imagen = 'img/agradecimiento.gif';
             color = '#ffcc16';
             res.render('pages/index', {
                 imagen: imagen,

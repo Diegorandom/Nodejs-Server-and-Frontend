@@ -223,6 +223,7 @@ p {
 p:last-child {
 	margin-bottom: 0;
 }
+p,
 h1,
 h2,
 h3,
