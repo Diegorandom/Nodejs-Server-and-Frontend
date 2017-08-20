@@ -65,6 +65,10 @@ app.get('/porque', function(req, res){
     res.render('pages/porque');
 })
 
+app.get('/porque', function(req, res){
+    res.render('pages/porque');
+})
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
