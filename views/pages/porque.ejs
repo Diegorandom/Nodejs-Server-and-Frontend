@@ -1,0 +1,65 @@
+<html>
+<head>
+    <% include ../partials/header.ejs %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+    
+    <style>
+     .gif {
+        background-image: url('img/fondo.jpg');
+        background-repeat: no-repeat;
+        background-position: center; 
+    }
+        
+    body{
+       background-color: #ffcc16;      
+        }        
+    </style>
+    
+<body>
+    <div class="gif" align="center" style="height:100%; height:1000px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12" style="margin-top:20px;" align="center">
+                <h1 align="center" style="text-align:center;">¿Por qué EMOJI Mezcal?</h1>
+            </div>
+            <div class="col-lg-12" align="center">
+                <h4>
+                <ul style="width:500px;" align="justify" style="text-align:center;">
+                    <br>
+                    <ol>1. El Mezcal es el destilado que se obtiene del agave, por ejemplo, el Tequila es un tipo de Mezcal. Para poder cosechar un agave, uno debe esperar 10 años en promedio, tiempo similar al que se debe esperar para un buen whisky.
+                    <div><img src="img/grafico-mezcal-whisky.png"></div>
+                    </ol>
+                    <br>
+                    <ol>2. El Mezcal cuenta con una Denominación de Origen (D.O.), como otros famosos destilados: el Cognac y el Whisky Escoces. De hecho, su D.O. es la más grande del mundo.
+                    <div><img src="img/Grafico-DO.png"></div>
+                    </ol>
+                    <br>
+                    <ol>3. El Mezcal es una de las categorías más dinámicas del mundo, promediando más de un 100% de crecimiento en exportaciones, los últimos 4 años.
+                    <div><img src="img/GraficoExportacion.png"></div>
+                    </ol>
+                </ul>
+                </h4>
+            </div>
+        </div>
+    </div>
+        <form id="votacion" method="post" action="/votacion" >
+        <div class="container" align="center" style="text-align:center;"> 
+            <div class="row" align="center">
+                    <div class="col-lg-12" align="center" style="text-align:center;">
+                        <input style="background-color: white; width:300px;" type="email" value="" tabindex="2" placeholder="Correo electrónico" name="email" required>
+                    </div>
+                    <div class="col-lg-12" align="center" style="margin-top:15px;">
+                        <div class="input-wrap">
+                        <button class="button" form="votacion" style="background-color:black; color:white; font-size:150%; border:none;">VOTA AQUÍ</button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</body>
+    
+    <% include ../partials/foot.ejs %>
+    
+</html>
