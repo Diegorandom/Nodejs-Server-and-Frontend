@@ -65,8 +65,8 @@ app.get('/porque', function(req, res){
     res.render('pages/porque');
 })
 
-app.get('/porque', function(req, res){
-    res.render('pages/porque');
+app.get('/proceso', function(req, res){
+    res.render('pages/proceso');
 })
 
 app.listen(app.get('port'), function() {
