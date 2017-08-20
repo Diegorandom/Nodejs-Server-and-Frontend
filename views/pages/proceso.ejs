@@ -1,8 +1,97 @@
 <html>
 <head>
-     <% include ../partials/header.ejs %>
+    <% include ../partials/header.ejs %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-<body>
+    
+    <style>
+     .gif {
+        background-repeat: no-repeat;
+        background-position: center; 
+    }
+        
+    body{
+       background-color: #ffcc16;      
+        }        
+        
+      .dropdown-menu, .dropdown-toggle, .dropdown{
+        background-color:transparent;
+        border: none;  
+    }
+    
+    .dropdown-toggle:hover{
+        background:transparent;
+        border: none; 
+    }    
+        
+    </style>
+    
+<body style="color:black">
+    
+    <div class="dropdown" align="right" style="margin-right:25px; position: fixed; top: 0; width: 100%; overflow: hidden;">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="color:none; margin-right:10px;" align="right">
+         <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+      </button>
+      <ul align="right" class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1" style="background-color:transparent; color:white; position: fixed; top: 50px; overflow: hidden;">
+         <li><a href="/">Inicio</a></li>
+        <li><a href="/proceso">¿Por qué EMOJI Mezcal?</a></li>
+      </ul>
+    </div>
+    
+    <div class="gif" align="center" style="height:100%; width:100%; height:1000px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12" style="margin-top:20px; text-align:center;"  align="center">
+                <h1 align="center" style="text-align:center;">Proceso de Aceptación</h1>
+            </div>
+            <div class="col-lg-12" align="center" >
+                <h4>
+                <ul style="max-width:500px; padding:0;" align="justify" style="text-align:center;">
+                    <br>
+                    <ol style="padding:0;">
+                        <h2>
+                        1. DISEÑO
+                        </h2>
+                        <img src="img/veladoras.png"></ol>
+                    <br>
+                    <ol style="padding:0;"><h2><a href="/porque" style="color:black;">2. JUSTIFICACIÓN</a></h2><div></div>
+                    </ol >
+                    <br>
+                    <ol style="padding:0;" ><h2>3. SOLICITUD</h2>
+                    <p>Para ser considerado en la publicación <em>Unicode Standard 2018</em>, la propuesta de emoji debe presentarse antes del 15 de Septiembre.</p>    
+                    </ol>
+                    <br>
+                    <ol style="padding:0;" ><h2>4. REVISIÓN DE COMITÉ</h2>
+                    <p>La propuesta será revisada por <em>Unicode Consortium</em> ubicada en EEUU, la cual es una organización sin fines de lucro fundada para desarrollar, extender y ampliar el uso de la estándares de globales que especifican la representación de textos en productos de software moderno y otros estándares (como los emojis). www.unicode.org 
+                    </p>
+                    </ol>
+                    <br>
+                    <ol style="padding:0;" ><h2>5. APROBACIÓN</h2>
+                    <p>De ser aprobado y después de algunas pruebas beta, el emoji estará listo para su despliegue y se publicará en su primer versión a finales de Junio 2018, una vez publicado, podremos disfrutar nuestro #emojimezcal.
+                    </p>
+                    </ol>
+                </ul>
+                </h4>
+            </div>
+        </div>
+    </div>
+        <form id="votacion" method="post" action="/votacion" >
+        <div class="container" align="center" style="text-align:center;"> 
+            <div class="row" align="center">
+                    <div class="col-lg-12" align="center" style="text-align:center;">
+                        <input style="background-color: white; width:300px;" type="email" value="" tabindex="2" placeholder="Correo electrónico" name="email" required>
+                    </div>
+                    <div class="col-lg-12" align="center" style="margin-top:15px;">
+                        <div class="input-wrap">
+                        <button class="button" form="votacion" style="background-color:black; color:white; font-size:150%; border:none;">VOTA AQUÍ</button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        </form>
+    </div>
 </body>
+    
+    <% include ../partials/foot.ejs %>
+    
 </html>
