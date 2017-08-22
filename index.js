@@ -36,8 +36,9 @@ imagen = 'img/emoji_veladora.gif';
 color = 'none';
     
   response.render('pages/index', {
-      imagen: imagen,
-      color: color
+        imagen: imagen,
+        color: color,
+        mensaje: ""
   });
 });
 
@@ -60,8 +61,11 @@ app.post('/votacion', function(req, res){
           if( resultado.records[0]._fields[0].properties.email == email){
                 res.render('pages/index', {
                     imagen: imagen,
-                    color: color
+                    color: color,
+                    mensaje: 'Este correo ya ha sido registrado!'
                 })
+                
+                console.log("Este correo ya ha sido registrado!")
             }else{
             
             
@@ -72,8 +76,11 @@ app.post('/votacion', function(req, res){
                     color = '#ffcc16';
                     res.render('pages/index', {
                         imagen: imagen,
-                        color: color
+                        color: color,
+                        mensaje: ""
                     })
+                    
+                    console.log("Este correo ya ha sido registrado!")
                 })
                 .catch(function(error){
                     console.log(error);
@@ -89,8 +96,10 @@ app.post('/votacion', function(req, res){
         if(resultado.records[0] == email ){
             res.render('pages/index', {
                     imagen: imagen,
-                    color: color
+                    color: color,
+                    mensaje: 'Este correo ya ha sido registrado!'
                 })
+            console.log("Este correo ya ha sido registrado!")
             
         }else{
             session
@@ -100,7 +109,8 @@ app.post('/votacion', function(req, res){
                     color = '#ffcc16';
                     res.render('pages/index', {
                         imagen: imagen,
-                        color: color
+                        color: color,
+                        
                     })
                 })
                 .catch(function(error){

@@ -27,6 +27,18 @@ src="https://www.facebook.com/tr?id=131374620779519&ev=PageView
 </head>
     
 <style>
+    
+    #message {
+        position: fixed;
+        top: 100px;
+        left: 50px;
+        width: 22%;
+        border-radius:10px;
+    }
+    #inner-message {
+        margin: 0 auto;
+    }
+    
     .gif {
         background-image: url('<%=imagen%>');
         background-repeat: no-repeat;
@@ -206,6 +218,17 @@ src="https://www.facebook.com/tr?id=131374620779519&ev=PageView
     </div>
     
         </div>
+    
+       <%if(mensaje != ""){ %>
+        <div id="message" style="color:black;">
+            <div style="padding: 5px; ">
+                <div id="inner-message" class="alert alert-error" style="background-color:white;">
+                    <button type="button" class="close" data-dismiss="alert" style="margin-left:10px;">&times;</button>
+                    <h4><%=mensaje%></h4>
+                </div>
+            </div>
+        </div> 
+    <%}%>
 
    
     
@@ -275,6 +298,8 @@ src="https://www.facebook.com/tr?id=131374620779519&ev=PageView
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    
+ 
     
 </body>
    
