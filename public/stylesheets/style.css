@@ -233,7 +233,7 @@ h6 {
 	font-family: 'Fjalla One', sans-serif;
 	font-weight: normal;
 	margin: 0 0 10px 0;
-	color: #333333;
+	color: black;
 }
 h1.title-divider,
 h2.title-divider,
@@ -3870,7 +3870,7 @@ h1.logo img {
 /*=============#page-footer=============*/
 
 #site-content #page-footer {
-	background-color: #2a2a2a;
+	background-color: black;
 	background-image: url(../images/common/map-background.png);
 	background-position: center center;
 	background-repeat: no-repeat;
