@@ -107,10 +107,13 @@ app.post('/votacion', function(req, res){
                 .then(function(resultado){
                     imagen = 'img/agradecimiento.gif';
                     color = '#ffcc16';
+                
+                    console.log('Este correo ha sido registrado exitosamente!');    
+                
                     res.render('pages/index', {
                         imagen: imagen,
                         color: color,
-                        
+                        mensaje: "mensaje"
                     })
                 })
                 .catch(function(error){
