@@ -113,7 +113,7 @@ app.post('/votacion', function(req, res){
                     res.render('pages/index', {
                         imagen: imagen,
                         color: color,
-                        mensaje: "Correo registrado exitosamente!"
+                        mensaje: "none"
                     })
                 })
                 .catch(function(error){
