@@ -47,18 +47,45 @@ app.post('/votacion', function(req, res){
     console.log('Comenzando registro...');
     
     session
-        .run('CREATE (n:EmojiVoter {email: {email} }) RETURN n', {email:email})
-        .then(function(resultado){
-            imagen = 'img/agradecimiento.gif';
-            color = '#ffcc16';
-            res.render('pages/index', {
-                imagen: imagen,
-                color: color
-            })
+        .run('MATCH (n:EmojiVoter) WHERE n.email = {email} RETURN n', {email:email})
+        .then(function(resultado) {
+        
+            console.log('resultado: ');
+            console.log(resultado.records[0]._fields[0].properties.email);
+            
+    
+            if( resultado.records[0]._fields[0].properties.email == email){
+                res.render('pages/index', {
+                    imagen: imagen,
+                    color: color
+                })
+            }else{
+            
+            
+            session
+                .run('CREATE (n:EmojiVoter {email: {email} }) RETURN n', {email:email})
+                .then(function(resultado){
+                    imagen = 'img/agradecimiento.gif';
+                    color = '#ffcc16';
+                    res.render('pages/index', {
+                        imagen: imagen,
+                        color: color
+                    })
+                })
+                .catch(function(error){
+                    console.log(error);
+                })
+            
+            }
+            
+            
         })
-        .catch(function(error){
-            console.log(error);
-        }) 
+         .catch(function(error){
+                console.log(error);
+            }) 
+    
+    
+     
 });
 
 app.get('/porque', function(req, res){
