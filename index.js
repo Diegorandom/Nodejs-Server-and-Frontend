@@ -50,11 +50,14 @@ app.post('/votacion', function(req, res){
         .run('MATCH (n:EmojiVoter) WHERE n.email = {email} RETURN n', {email:email})
         .then(function(resultado) {
         
-            console.log('resultado: ');
-            console.log(resultado.records[0]._fields[0].properties.email);
             
-    
-            if( resultado.records[0]._fields[0].properties.email == email){
+            
+    if( resultado.records[0] != undefined){
+        
+        console.log('resultado: ');
+            console.log(resultado.records[0]._fields[0].properties.email);
+        
+          if( resultado.records[0]._fields[0].properties.email == email){
                 res.render('pages/index', {
                     imagen: imagen,
                     color: color
@@ -78,6 +81,36 @@ app.post('/votacion', function(req, res){
             
             }
             
+    }else{
+        
+         console.log('resultado: ');
+            console.log(resultado.records[0]);
+        
+        if(resultado.records[0] == email ){
+            res.render('pages/index', {
+                    imagen: imagen,
+                    color: color
+                })
+            
+        }else{
+            session
+                .run('CREATE (n:EmojiVoter {email: {email} }) RETURN n', {email:email})
+                .then(function(resultado){
+                    imagen = 'img/agradecimiento.gif';
+                    color = '#ffcc16';
+                    res.render('pages/index', {
+                        imagen: imagen,
+                        color: color
+                    })
+                })
+                .catch(function(error){
+                    console.log(error);
+                })
+        }
+        
+    }
+        
+          
             
         })
          .catch(function(error){
