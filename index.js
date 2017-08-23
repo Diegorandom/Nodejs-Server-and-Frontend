@@ -4,7 +4,7 @@ var neo4j = require('neo4j-driver').v1;
 var bodyParser = require('body-parser');
 var geoip = require('geoip-lite');
 
-var imagen = 'img/emojimezcal.gif', color = 'none', ip;
+var imagen = 'img/emojimezcal.gif', color = 'none', ip, lang = null, geo;
 
 //CONFIGURACIÓN DE MÓDULOS INTERNOS DE EXPRESS
 app.use(bodyParser.json()); //DECLARACION DE PROTOCOLO DE LECTURA DE LAS VARIABLES INTERNAS "BODY" DE LAS FUNCIONES 
@@ -37,18 +37,48 @@ console.log('Ip:');
 ip = request.headers['x-forwarded-for']
 console.log(ip); 
     
-var geo = geoip.lookup(ip);
+geo = geoip.lookup(ip);
     
 console.log(geo);    
     
 imagen = 'img/emoji_veladora.gif'; 
 color = 'none';
+
+    geo = {
+        country: "US"
+    }
     
-  response.render('pages/es/index', {
-        imagen: imagen,
-        color: color,
-        mensaje: ""
-  });
+    if(geo != undefined){
+        if(geo.country ==  'MX' || geo.country ==  'AR' || geo.country ==  'BO' || geo.country ==  'BR' || geo.country ==  'CL' || geo.country ==  'CO' || geo.country ==  'EC' || geo.country ==  'FK' || geo.country ==  'GF' || geo.country ==  'GY' || geo.country ==  'PY' || geo.country ==  'PE' || geo.country ==  'SR' || geo.country ==  'UY' || geo.country ==  'VE' || geo.country == 'BZ' || geo.country == 'CR' || geo.country == 'CU' || geo.country == 'DO' || geo.country == 'SV' || geo.country == 'GT' || geo.country == 'HT' || geo.country == 'HN' || geo.country == 'PA' || geo.country == 'PR' || geo.country == 'ES' ){
+
+             response.render('pages/es/index', {
+                imagen: imagen,
+                color: color,
+                mensaje: ""
+            });
+
+            lang = "es";
+
+        }else{
+
+           response.render('pages/en/index', {
+                imagen: imagen,
+                color: color,
+                mensaje: ""
+          }); 
+
+            lang = "en";
+
+        }    
+    }else{
+        response.render('pages/es/index', {
+                imagen: imagen,
+                color: color,
+                mensaje: ""
+            });
+    };
+        
+    
 });
 
 app.post('/votacion', function(req, res){
@@ -68,13 +98,24 @@ app.post('/votacion', function(req, res){
             console.log(resultado.records[0]._fields[0].properties.email);
         
           if( resultado.records[0]._fields[0].properties.email == email){
-                res.render('pages/es/index', {
+              if(lang == "es" || lang == null){
+                  res.render('pages/es/index', {
                     imagen: imagen,
                     color: color,
                     mensaje: 'Este correo ya ha sido registrado!'
                 })
                 
+              }else{
+                  res.render('pages/en/index', {
+                    imagen: imagen,
+                    color: color,
+                    mensaje: 'Este correo ya ha sido registrado!'
+                })
+                
+              }
+              
                 console.log("Este correo ya ha sido registrado!")
+                
             }else{
             
             
@@ -83,11 +124,20 @@ app.post('/votacion', function(req, res){
                 .then(function(resultado){
                     imagen = 'img/agradecimiento.gif';
                     color = '#ffcc16';
-                    res.render('pages/es/index', {
-                        imagen: imagen,
-                        color: color,
-                        mensaje: ""
-                    })
+                    
+                    if(lang == "es" || lang == null){
+                        res.render('pages/es/index', {
+                            imagen: imagen,
+                            color: color,
+                            mensaje: ""
+                        })
+                    }else{
+                        res.render('pages/en/index', {
+                            imagen: imagen,
+                            color: color,
+                            mensaje: ""
+                        })
+                    }
                     
                     console.log("Este correo ya ha sido registrado!")
                 })
@@ -103,11 +153,21 @@ app.post('/votacion', function(req, res){
             console.log(resultado.records[0]);
         
         if(resultado.records[0] == email ){
-            res.render('pages/es/index', {
+            
+            if(lang == "es" || lang == null){
+                res.render('pages/es/index', {
                     imagen: imagen,
                     color: color,
                     mensaje: 'Este correo ya ha sido registrado!'
                 })
+            }else{
+                res.render('pages/en/index', {
+                    imagen: imagen,
+                    color: color,
+                    mensaje: 'Este correo ya ha sido registrado!'
+                })
+            }
+            
             console.log("Este correo ya ha sido registrado!")
             
         }else{
@@ -119,11 +179,20 @@ app.post('/votacion', function(req, res){
                 
                     console.log('Este correo ha sido registrado exitosamente!');    
                 
-                    res.render('pages/es/index', {
-                        imagen: imagen,
-                        color: color,
-                        mensaje: "none"
-                    })
+                    if(lang == "es" || lang == null){
+                        res.render('pages/es/index', {
+                            imagen: imagen,
+                            color: color,
+                            mensaje: "none"
+                        })
+                    }else{
+                        res.render('pages/en/index', {
+                            imagen: imagen,
+                            color: color,
+                            mensaje: "none"
+                        })
+                    } 
+                
                 })
                 .catch(function(error){
                     console.log(error);
@@ -132,8 +201,6 @@ app.post('/votacion', function(req, res){
         
     }
         
-          
-            
         })
          .catch(function(error){
                 console.log(error);
@@ -144,11 +211,70 @@ app.post('/votacion', function(req, res){
 });
 
 app.get('/porque', function(req, res){
-    res.render('pages/es/porque');
+    
+        console.log('Ip:');
+        ip = req.headers['x-forwarded-for']
+        console.log(ip); 
+
+        geo = geoip.lookup(ip);
+
+        console.log(geo);
+    
+        geo = {
+            country: "US"
+        }
+    
+      if(geo != undefined){
+        if(geo.country ==  'MX' || geo.country ==  'AR' || geo.country ==  'BO' || geo.country ==  'BR' || geo.country ==  'CL' || geo.country ==  'CO' || geo.country ==  'EC' || geo.country ==  'FK' || geo.country ==  'GF' || geo.country ==  'GY' || geo.country ==  'PY' || geo.country ==  'PE' || geo.country ==  'SR' || geo.country ==  'UY' || geo.country ==  'VE' || geo.country == 'BZ' || geo.country == 'CR' || geo.country == 'CU' || geo.country == 'DO' || geo.country == 'SV' || geo.country == 'GT' || geo.country == 'HT' || geo.country == 'HN' || geo.country == 'PA' || geo.country == 'PR' || geo.country == 'ES' || geo.country == undefined ){
+
+             res.render('pages/es/porque');
+
+            lang = "es";
+
+        }else{
+
+           res.render('pages/en/porque');
+
+            lang = "en";
+
+        }    
+      }else{
+          res.render('pages/es/porque');
+      }
+    
 })
 
 app.get('/proceso', function(req, res){
-    res.render('pages/es/proceso');
+    
+    console.log('Ip:');
+    ip = req.headers['x-forwarded-for']
+    console.log(ip); 
+
+    geo = geoip.lookup(ip);
+
+    console.log(geo);
+    
+    geo = {
+        country: "US"
+    }
+    
+    if( geo != undefined){
+         if(geo.country ==  'MX' || geo.country ==  'AR' || geo.country ==  'BO' || geo.country ==  'BR' || geo.country ==  'CL' || geo.country ==  'CO' || geo.country ==  'EC' || geo.country ==  'FK' || geo.country ==  'GF' || geo.country ==  'GY' || geo.country ==  'PY' || geo.country ==  'PE' || geo.country ==  'SR' || geo.country ==  'UY' || geo.country ==  'VE' || geo.country == 'BZ' || geo.country == 'CR' || geo.country == 'CU' || geo.country == 'DO' || geo.country == 'SV' || geo.country == 'GT' || geo.country == 'HT' || geo.country == 'HN' || geo.country == 'PA' || geo.country == 'PR' || geo.country == 'ES' || geo.country == undefined ){
+
+            res.render('pages/es/proceso');
+
+            lang = "es";
+
+        }else{
+
+          res.render('pages/en/proceso');
+
+            lang = "en";
+
+        }  
+    }else{
+         res.render('pages/es/proceso');
+    }
 })
 
 app.listen(app.get('port'), function() {
