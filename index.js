@@ -118,16 +118,18 @@ app.post('/votacion', function(req, res){
             session
                 .run('CREATE (n:EmojiVoter {email: {email} }) RETURN n', {email:email})
                 .then(function(resultado){
-                    imagen = 'img/agradecimiento.gif';
+                    
                     color = '#ffcc16';
                     
                     if(lang == "es" || lang == null){
+                        imagen = 'img/agradecimiento.gif';
                         res.render('pages/es/index', {
                             imagen: imagen,
                             color: color,
                             mensaje: ""
                         })
                     }else{
+                        imagen = 'img/agradecimiento-en.gif';
                         res.render('pages/en/index', {
                             imagen: imagen,
                             color: color,
@@ -154,13 +156,13 @@ app.post('/votacion', function(req, res){
                 res.render('pages/es/index', {
                     imagen: imagen,
                     color: color,
-                    mensaje: 'Este correo ya ha sido registrado!'
+                    mensaje: 'Ya has votado con este correo!'
                 })
             }else{
                 res.render('pages/en/index', {
                     imagen: imagen,
                     color: color,
-                    mensaje: 'Este correo ya ha sido registrado!'
+                    mensaje: 'You have already voted!'
                 })
             }
             
