@@ -2,8 +2,9 @@ var express = require('express');
 var app = express();
 var neo4j = require('neo4j-driver').v1;
 var bodyParser = require('body-parser');
+var geoip = require('geoip-lite');
 
-var imagen = 'img/emojimezcal.gif', color = 'none';
+var imagen = 'img/emojimezcal.gif', color = 'none', ip;
 
 //CONFIGURACIÓN DE MÓDULOS INTERNOS DE EXPRESS
 app.use(bodyParser.json()); //DECLARACION DE PROTOCOLO DE LECTURA DE LAS VARIABLES INTERNAS "BODY" DE LAS FUNCIONES 
@@ -31,11 +32,19 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
+
+console.log('Ip:');
+ip = request.headers['x-forwarded-for']
+console.log(ip); 
+    
+var geo = geoip.lookup(ip);
+    
+console.log(geo);    
     
 imagen = 'img/emoji_veladora.gif'; 
 color = 'none';
     
-  response.render('pages/index', {
+  response.render('pages/es/index', {
         imagen: imagen,
         color: color,
         mensaje: ""
@@ -59,7 +68,7 @@ app.post('/votacion', function(req, res){
             console.log(resultado.records[0]._fields[0].properties.email);
         
           if( resultado.records[0]._fields[0].properties.email == email){
-                res.render('pages/index', {
+                res.render('pages/es/index', {
                     imagen: imagen,
                     color: color,
                     mensaje: 'Este correo ya ha sido registrado!'
@@ -74,7 +83,7 @@ app.post('/votacion', function(req, res){
                 .then(function(resultado){
                     imagen = 'img/agradecimiento.gif';
                     color = '#ffcc16';
-                    res.render('pages/index', {
+                    res.render('pages/es/index', {
                         imagen: imagen,
                         color: color,
                         mensaje: ""
@@ -94,7 +103,7 @@ app.post('/votacion', function(req, res){
             console.log(resultado.records[0]);
         
         if(resultado.records[0] == email ){
-            res.render('pages/index', {
+            res.render('pages/es/index', {
                     imagen: imagen,
                     color: color,
                     mensaje: 'Este correo ya ha sido registrado!'
@@ -110,7 +119,7 @@ app.post('/votacion', function(req, res){
                 
                     console.log('Este correo ha sido registrado exitosamente!');    
                 
-                    res.render('pages/index', {
+                    res.render('pages/es/index', {
                         imagen: imagen,
                         color: color,
                         mensaje: "none"
@@ -135,11 +144,11 @@ app.post('/votacion', function(req, res){
 });
 
 app.get('/porque', function(req, res){
-    res.render('pages/porque');
+    res.render('pages/es/porque');
 })
 
 app.get('/proceso', function(req, res){
-    res.render('pages/proceso');
+    res.render('pages/es/proceso');
 })
 
 app.listen(app.get('port'), function() {

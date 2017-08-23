@@ -15,6 +15,7 @@
     "circle-chart": "^1.0.0",
     "ejs": "2.4.1",
     "express": "4.13.3",
+    "geoip-lite": "^1.2.1",
     "neo4j-driver": "^1.4.0"
   },
   "repository": {
