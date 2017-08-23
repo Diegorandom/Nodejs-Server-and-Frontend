@@ -44,10 +44,6 @@ console.log(geo);
 imagen = 'img/emoji_veladora.gif'; 
 color = 'none';
 
-    geo = {
-        country: "US"
-    }
-    
     if(geo != undefined){
         if(geo.country ==  'MX' || geo.country ==  'AR' || geo.country ==  'BO' || geo.country ==  'BR' || geo.country ==  'CL' || geo.country ==  'CO' || geo.country ==  'EC' || geo.country ==  'FK' || geo.country ==  'GF' || geo.country ==  'GY' || geo.country ==  'PY' || geo.country ==  'PE' || geo.country ==  'SR' || geo.country ==  'UY' || geo.country ==  'VE' || geo.country == 'BZ' || geo.country == 'CR' || geo.country == 'CU' || geo.country == 'DO' || geo.country == 'SV' || geo.country == 'GT' || geo.country == 'HT' || geo.country == 'HN' || geo.country == 'PA' || geo.country == 'PR' || geo.country == 'ES' ){
 
@@ -220,10 +216,6 @@ app.get('/porque', function(req, res){
 
         console.log(geo);
     
-        geo = {
-            country: "US"
-        }
-    
       if(geo != undefined){
         if(geo.country ==  'MX' || geo.country ==  'AR' || geo.country ==  'BO' || geo.country ==  'BR' || geo.country ==  'CL' || geo.country ==  'CO' || geo.country ==  'EC' || geo.country ==  'FK' || geo.country ==  'GF' || geo.country ==  'GY' || geo.country ==  'PY' || geo.country ==  'PE' || geo.country ==  'SR' || geo.country ==  'UY' || geo.country ==  'VE' || geo.country == 'BZ' || geo.country == 'CR' || geo.country == 'CU' || geo.country == 'DO' || geo.country == 'SV' || geo.country == 'GT' || geo.country == 'HT' || geo.country == 'HN' || geo.country == 'PA' || geo.country == 'PR' || geo.country == 'ES' || geo.country == undefined ){
 
@@ -253,10 +245,6 @@ app.get('/proceso', function(req, res){
     geo = geoip.lookup(ip);
 
     console.log(geo);
-    
-    geo = {
-        country: "US"
-    }
     
     if( geo != undefined){
          if(geo.country ==  'MX' || geo.country ==  'AR' || geo.country ==  'BO' || geo.country ==  'BR' || geo.country ==  'CL' || geo.country ==  'CO' || geo.country ==  'EC' || geo.country ==  'FK' || geo.country ==  'GF' || geo.country ==  'GY' || geo.country ==  'PY' || geo.country ==  'PE' || geo.country ==  'SR' || geo.country ==  'UY' || geo.country ==  'VE' || geo.country == 'BZ' || geo.country == 'CR' || geo.country == 'CU' || geo.country == 'DO' || geo.country == 'SV' || geo.country == 'GT' || geo.country == 'HT' || geo.country == 'HN' || geo.country == 'PA' || geo.country == 'PR' || geo.country == 'ES' || geo.country == undefined ){
