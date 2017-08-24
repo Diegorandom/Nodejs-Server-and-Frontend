@@ -4,7 +4,7 @@ var neo4j = require('neo4j-driver').v1;
 var bodyParser = require('body-parser');
 var geoip = require('geoip-lite');
 
-var imagen = 'img/emojimezcal.gif', color = 'none', ip, lang = null, geo;
+var imagen = 'img/emojimezcal.gif', color = 'none', ip, lang = null, geo, country = undefined;
 
 //CONFIGURACIÓN DE MÓDULOS INTERNOS DE EXPRESS
 app.use(bodyParser.json()); //DECLARACION DE PROTOCOLO DE LECTURA DE LAS VARIABLES INTERNAS "BODY" DE LAS FUNCIONES 
@@ -38,6 +38,13 @@ ip = request.headers['x-forwarded-for']
 console.log(ip); 
     
 geo = geoip.lookup(ip);
+    
+if(geo != null){
+    country = geo.country;  
+}else{
+    country = null;
+};
+  
     
 console.log(geo);    
     
@@ -116,7 +123,7 @@ app.post('/votacion', function(req, res){
             
             
             session
-                .run('CREATE (n:EmojiVoter {email: {email} }) RETURN n', {email:email})
+                .run('CREATE (n:EmojiVoter {email: {email}, country:{country} }) RETURN n', {email:email, country:country})
                 .then(function(resultado){
                     
                     color = '#ffcc16';
@@ -170,8 +177,8 @@ app.post('/votacion', function(req, res){
             
         }else{
             session
-                .run('CREATE (n:EmojiVoter {email: {email} }) RETURN n', {email:email})
-                .then(function(resultado){
+                 .run('CREATE (n:EmojiVoter {email: {email}, country:{country} }) RETURN n', {email:email, country:country})
+                 .then(function(resultado){
                     imagen = 'img/agradecimiento.gif';
                     color = '#ffcc16';
                 
@@ -215,6 +222,12 @@ app.get('/porque', function(req, res){
         console.log(ip); 
 
         geo = geoip.lookup(ip);
+    
+        if(geo != null){
+            country = geo.country;  
+        }else{
+            country = null;
+        };
 
         console.log(geo);
     
@@ -245,6 +258,12 @@ app.get('/proceso', function(req, res){
     console.log(ip); 
 
     geo = geoip.lookup(ip);
+    
+    if(geo != null){
+        country = geo.country;  
+    }else{
+        country = null;
+    };
 
     console.log(geo);
     
