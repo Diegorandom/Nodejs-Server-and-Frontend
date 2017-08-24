@@ -4,7 +4,7 @@ var neo4j = require('neo4j-driver').v1;
 var bodyParser = require('body-parser');
 var geoip = require('geoip-lite');
 
-var imagen = 'img/emojimezcal.gif', color = 'none', ip, lang = null, geo, country = undefined;
+var imagen = 'img/emojimezcal.gif', color = 'none', ip, lang = null, geo, country = null;
 
 //CONFIGURACIÓN DE MÓDULOS INTERNOS DE EXPRESS
 app.use(bodyParser.json()); //DECLARACION DE PROTOCOLO DE LECTURA DE LAS VARIABLES INTERNAS "BODY" DE LAS FUNCIONES 
