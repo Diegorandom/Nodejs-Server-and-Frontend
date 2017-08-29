@@ -44,6 +44,8 @@ if(geo != undefined){
 }else{
     country = null;
 };
+  
+geo = "US"
     
 console.log(geo);    
     
