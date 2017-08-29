@@ -39,12 +39,11 @@ console.log(ip);
     
 geo = geoip.lookup(ip);
     
-if(geo != null){
+if(geo != undefined){
     country = geo.country;  
 }else{
     country = null;
 };
-  
     
 console.log(geo);    
     
