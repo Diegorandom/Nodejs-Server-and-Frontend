@@ -44,7 +44,7 @@ if(geo != undefined){
 }else{
     country = null;
 };
-  
+  /*
 var azar = Math.random();
 
     console.log("azar");
@@ -54,7 +54,7 @@ if(azar > 0.5){
     console.log("voto con correo");
 }else{
     console.log("voto con correo");
-}
+} */
     
 console.log(geo);    
     
@@ -67,8 +67,7 @@ color = 'none';
              response.render('pages/es/index', {
                 imagen: imagen,
                 color: color,
-                mensaje: "",
-                azar: azar
+                mensaje: ""
             });
 
             lang = "es";
@@ -78,8 +77,7 @@ color = 'none';
            response.render('pages/en/index', {
                 imagen: imagen,
                 color: color,
-                mensaje: "",
-                azar: azar
+                mensaje: ""
           }); 
 
             lang = "en";
@@ -89,8 +87,7 @@ color = 'none';
         response.render('pages/es/index', {
                 imagen: imagen,
                 color: color,
-                mensaje: "",
-                azar: azar
+                mensaje: ""
             });
     };
         
@@ -118,16 +115,14 @@ app.post('/votacion', function(req, res){
                   res.render('pages/es/index', {
                     imagen: imagen,
                     color: color,
-                    mensaje: 'Este correo ya ha sido registrado!',
-                    azar: azar
+                    mensaje: 'Este correo ya ha sido registrado!'
                 })
                 
               }else{
                   res.render('pages/en/index', {
                     imagen: imagen,
                     color: color,
-                    mensaje: 'Este correo ya ha sido registrado!',
-                    azar: azar
+                    mensaje: 'Este correo ya ha sido registrado!'
                 })
                 
               }
@@ -148,16 +143,14 @@ app.post('/votacion', function(req, res){
                         res.render('pages/es/index', {
                             imagen: imagen,
                             color: color,
-                            mensaje: "",
-                            azar: azar
+                            mensaje: ""
                         })
                     }else{
                         imagen = 'img/agradecimiento-en.gif';
                         res.render('pages/en/index', {
                             imagen: imagen,
                             color: color,
-                            mensaje: "",
-                            azar: azar
+                            mensaje: ""
                         })
                     }
                     
