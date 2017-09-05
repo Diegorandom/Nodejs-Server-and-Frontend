@@ -4,7 +4,7 @@ var neo4j = require('neo4j-driver').v1;
 var bodyParser = require('body-parser');
 var geoip = require('geoip-lite');
 
-var imagen = 'img/emojimezcal.gif', color = 'none', ip, lang = null, geo, country = null;
+var imagen = 'img/emojimezcal.gif', color = 'none', ip = null, lang = null, geo, country = null, metro = null, zip = null, ll = null, region = null, city = null;
 
 //CONFIGURACIÓN DE MÓDULOS INTERNOS DE EXPRESS
 app.use(bodyParser.json()); //DECLARACION DE PROTOCOLO DE LECTURA DE LAS VARIABLES INTERNAS "BODY" DE LAS FUNCIONES 
@@ -34,15 +34,26 @@ app.set('view engine', 'ejs');
 app.get('/', function(request, response) {
 
 console.log('Ip:');
-ip = request.headers['x-forwarded-for']
+ip = request.headers['x-forwarded-for'];
+
 console.log(ip); 
     
-geo = geoip.lookup(ip);
+geo = geoip.lookup(ip);   
     
 if(geo != undefined){
-    country = geo.country;  
+    country = geo.country;
+    region = geo.region;
+    city = geo.city;
+    ll = geo.ll;
+    metro = geo.metro;
+    zip = geo.zip;
 }else{
     country = null;
+    region = null;
+    city = null;
+    metro = null;
+    ll = null;
+    zip = null;
 };
   /*
 var azar = Math.random();
@@ -95,12 +106,10 @@ color = 'none';
 });
 
 app.post('/votacion', function(req, res){
-    var email = req.body.email;
     
     console.log('Comenzando registro...');
-    
     session
-        .run('MATCH (n:EmojiVoter) WHERE n.email = {email} RETURN n', {email:email})
+        .run('MATCH (n:EmojiVoter) WHERE n.ip = {ip} RETURN n', {ip:ip})
         .then(function(resultado) {
         
             
@@ -108,32 +117,32 @@ app.post('/votacion', function(req, res){
     if( resultado.records[0] != undefined){
         
         console.log('resultado: ');
-            console.log(resultado.records[0]._fields[0].properties.email);
+            console.log(resultado.records[0]._fields[0].properties.ip);
         
-          if( resultado.records[0]._fields[0].properties.email == email){
+          if( resultado.records[0]._fields[0].properties.ip == ip){
               if(lang == "es" || lang == null){
                   res.render('pages/es/index', {
                     imagen: imagen,
                     color: color,
-                    mensaje: 'Este correo ya ha sido registrado!'
+                    mensaje: 'Ya has votado antes!'
                 })
                 
               }else{
                   res.render('pages/en/index', {
                     imagen: imagen,
                     color: color,
-                    mensaje: 'Este correo ya ha sido registrado!'
+                    mensaje: 'Ya has votado antes!'
                 })
                 
               }
               
-                console.log("Este correo ya ha sido registrado!")
+                console.log("Ya has votado antes!")
                 
             }else{
             
             
             session
-                .run('CREATE (n:EmojiVoter {email: {email}, country:{country} }) RETURN n', {email:email, country:country})
+                .run('CREATE (n:EmojiVoter {ip: {ip}, country:{country}, region:{region}, ciudad:{city}, metrocode:{metro}, zip:{zip} }) RETURN n', {ip:ip, country:country, region:region, city:city, ll:ll, metro:metro, zip:zip})
                 .then(function(resultado){
                     
                     color = '#ffcc16';
@@ -167,7 +176,7 @@ app.post('/votacion', function(req, res){
          console.log('resultado: ');
             console.log(resultado.records[0]);
         
-        if(resultado.records[0] == email ){
+        if(resultado.records[0] == ip ){
             
             if(lang == "es" || lang == null){
                 res.render('pages/es/index', {
@@ -187,7 +196,7 @@ app.post('/votacion', function(req, res){
             
         }else{
             session
-                 .run('CREATE (n:EmojiVoter {email: {email}, country:{country} }) RETURN n', {email:email, country:country})
+                 .run('CREATE (n:EmojiVoter {ip: {ip}, country:{country}, region:{region}, ciudad:{city}, metrocode:{metro}, zip:{zip} }) RETURN n', {ip:ip, country:country, region:region, city:city, ll:ll, metro:metro, zip:zip})
                  .then(function(resultado){
                     imagen = 'img/agradecimiento.gif';
                     color = '#ffcc16';
