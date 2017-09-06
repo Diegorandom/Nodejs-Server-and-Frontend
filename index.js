@@ -105,6 +105,13 @@ color = 'none';
     
 });
 
+app.get('/votacion', function(req,res,error){
+    if(error == true){
+        res.render('/');
+    }
+    res.render('/');
+});
+
 app.post('/votacion', function(req, res, error){
     if(error == true){
         res.render('/');
