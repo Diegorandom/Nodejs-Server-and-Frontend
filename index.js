@@ -106,7 +106,7 @@ color = 'none';
 });
 
 app.post('/votacion', function(req, res, error){
-    if(error){
+    if(error == true){
         res.render('/');
     }
     
