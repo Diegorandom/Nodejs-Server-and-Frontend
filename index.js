@@ -106,15 +106,45 @@ color = 'none';
 });
 
 app.get('/votacion', function(req,res,error){
+    imagen = 'img/emoji_veladora.gif'; 
+    color = 'none';
     if(error == true){
-        res.render('/');
+       if(lang == "es" || lang == null){
+            res.render('pages/es/index', {
+                imagen: imagen,
+                color: color,
+                mensaje: ""
+            });
+        }else{
+            res.render('pages/en/index', {
+                imagen: imagen,
+                color: color,
+                mensaje: ""
+            });
+        }
     }
-    res.render('/');
+    if(lang == "es" || lang == null){
+            res.render('pages/es/index', {
+                imagen: imagen,
+                color: color,
+                mensaje: ""
+            });
+        }else{
+            res.render('pages/en/index', {
+                imagen: imagen,
+                color: color,
+                mensaje: ""
+            });
+        }
 });
 
 app.post('/votacion', function(req, res, error){
     if(error == true){
-        res.render('/');
+        if(lang == "es" || lang == null){
+            res.render('pages/es/index');
+        }else{
+            res.render('pages/en/index');
+        }
     }
     
     console.log('Comenzando registro...');
