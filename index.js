@@ -105,7 +105,10 @@ color = 'none';
     
 });
 
-app.post('/votacion', function(req, res){
+app.post('/votacion', function(req, res, error){
+    if(error){
+        res.render('/');
+    }
     
     console.log('Comenzando registro...');
     session
