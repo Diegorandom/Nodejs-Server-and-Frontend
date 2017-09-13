@@ -286,7 +286,7 @@ app.get('/porque', function(req, res){
             country = geo.country;  
         }else{
             country = null;
-        };
+        
 
         console.log(geo);
     
@@ -307,7 +307,7 @@ app.get('/porque', function(req, res){
       }else{
           res.render('pages/es/porque');
       }
-    
+        }
 })
 
 app.get('/proceso', function(req, res){
