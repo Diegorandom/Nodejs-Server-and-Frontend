@@ -56,7 +56,9 @@ session
         //    console.log(nodo)
             bd.push(nodo);
             csvStream.write(nodo);
+            console.log('nodes: ' + item)
         })
+        console.log('end of writing')
         csvStream.end();
     })
     .catch(function(error){
