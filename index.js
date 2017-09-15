@@ -3,6 +3,8 @@ var app = express();
 var neo4j = require('neo4j-driver').v1;
 var bodyParser = require('body-parser');
 var geoip = require('geoip-lite');
+var csv = require("fast-csv");
+var fs = require('fs');
 
 var imagen = 'img/emojimezcal.gif', color = 'none', ip = null, lang = null, geo, country = null, metro = null, zip = null, ll = null, region = null, city = null;
 
@@ -30,6 +32,38 @@ app.use(express.static(__dirname + '/public'));
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+
+var csvStream = csv.createWriteStream({headers: true}),
+    writableStream = fs.createWriteStream("emojivoters.csv");
+ 
+writableStream.on("finish", function(){
+  console.log("DONE!");
+});
+ 
+var bd = new Array();
+
+session
+    .run('MATCH (u:EmojiVoter) RETURN u.email, u.ip, u.country, u.ciudad, u.metrocode, u.region, u.zip')
+    .then(function(resultado){
+        csvStream.pipe(writableStream);
+        resultado.records.forEach(function(record, item){
+            console.log("starting the writing");
+            console.log('# de records: ' + item);
+              var nodo = new Array();
+              for(var i = 0; i < 6;i++){
+                nodo[i] = record._fields[i]
+              }
+            console.log('escribiendo un nodo')
+            console.log(nodo)
+            bd.push(nodo);
+            csvStream.write(nodo);
+        })
+        csvStream.end();
+    })
+    .catch(function(error){
+        console.log(error);
+    })
+
 
 app.get('/', function(request, response) {
 
