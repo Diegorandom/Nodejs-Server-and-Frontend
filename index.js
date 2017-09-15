@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var geoip = require('geoip-lite');
 var csv = require("fast-csv");
 var fs = require('fs');
+var http = require('http');
 
 var imagen = 'img/emojimezcal.gif', color = 'none', ip = null, lang = null, geo, country = null, metro = null, zip = null, ll = null, region = null, city = null;
 
@@ -34,7 +35,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 var csvStream = csv.createWriteStream({headers: true}),
-    writableStream = fs.createWriteStream("emojivoters.csv");
+    writableStream = fs.createWriteStream("public/emojivoters.csv");
  
 writableStream.on("finish", function(){
   console.log("DONE!");
@@ -52,8 +53,8 @@ session
               for(var i = 0; i < 6;i++){
                 nodo[i] = record._fields[i]
               }
-           // console.log('escribiendo un nodo')
-        //    console.log(nodo)
+            // console.log('escribiendo un nodo')
+            // console.log(nodo)
             bd.push(nodo);
             csvStream.write(nodo);
             console.log('nodes: ' + item)
