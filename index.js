@@ -46,15 +46,14 @@ session
     .run('MATCH (u:EmojiVoter) RETURN u.email, u.ip, u.country, u.ciudad, u.metrocode, u.region, u.zip')
     .then(function(resultado){
         csvStream.pipe(writableStream);
+        console.log("starting the writing");
         resultado.records.forEach(function(record, item){
-            console.log("starting the writing");
-            console.log('# de records: ' + item);
               var nodo = new Array();
               for(var i = 0; i < 6;i++){
                 nodo[i] = record._fields[i]
               }
-            console.log('escribiendo un nodo')
-            console.log(nodo)
+           // console.log('escribiendo un nodo')
+        //    console.log(nodo)
             bd.push(nodo);
             csvStream.write(nodo);
         })
