@@ -13,7 +13,7 @@
     "body-parser": "^1.17.2",
     "bootstrap-hover-dropdown": "^2.2.1",
     "circle-chart": "^1.0.0",
-    "ejs": "2.4.1",
+    "ejs": "*",
     "express": "4.13.3",
     "fast-csv": "^2.4.0",
     "geoip-lite": "^1.2.1",
